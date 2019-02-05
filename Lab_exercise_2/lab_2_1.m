@@ -56,3 +56,34 @@ pn_dBpeak = 20*log10( max(pn) );
 sn_CrestdB = sn_dBpeak - sn_dBrms;
 wn_CrestdB = wn_dBpeak - wn_dBrms;
 pn_CrestdB = pn_dBpeak - pn_dBrms;
+
+%% g) spectrum
+%fft
+SN_fft = fft(sn);
+SN_norm = 2.*SN_fft ./N;
+SN_dB = 20*log10(abs(SN_norm));
+
+WN_fft = fft(wn);
+WN_norm = 2.*WN_fft ./N;
+WN_dB = 20*log10(WN_norm);
+
+PN_fft = fft(pn);
+PN_norm = PN_fft .* (2/N);
+PN_dB = 20*log10(PN_norm);
+
+%plot
+figure(1);
+hold on;
+plot( abs(PN_dB), 'r');
+plot( abs(WN_dB), 'c');
+plot( abs(SN_dB), 'g');
+set(gca, 'XScale', 'log');
+set(gca,'xtick', 1000*(1:10)) 
+xlim([f, fs/2]);
+xticklabels({'1','2','3','4','5','6','7','8','9','10','20'})
+xlabel('frequency / kHz')
+ylabel('amplitude / dB')
+legend('pink noise', 'white noise', 'sine');
+
+%% h)
+
