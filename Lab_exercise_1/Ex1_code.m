@@ -1,5 +1,5 @@
  
- pkg load signal;
+ 
  f1=200;
  f2=200.25;
  fs=800;
@@ -9,16 +9,19 @@
  f=k/2;
  
  
+ %%
  %aufgabe a)
  sig1=sin(2*pi*f1*t);
  sig2=sin(2*pi*f2*t);
  
  
- %augabe b)
+ %%
+ %aufgabe b)
  rect = ones(N,1);
  hanning = hann(N,'periodic');
  flat = flattopwin(N,'periodic');
 
+ %%
  %c)
  
  %rect
@@ -38,7 +41,8 @@
  sig2_flat_fft = fft(sig2_flat);
  
  
- %%SECT d)
+ %%
+ %SECT d)
  %normalise
  normalise= 2/N*ones(1,N);
  normalise(1)= 1;
@@ -49,7 +53,7 @@
  plot(f(1:N/2+1),20*log10(abs(sig1_rect_fft(1:N/2+1))));
  plot(f(1:N/2+1),20*log10(abs(sig2_rect_fft(1:N/2+1))));
  legend('200 Hz','200.25 Hz');
- title('fs = 800 Hz, rectangular window, FFT length = 1600, ∆f = 0.5 Hz');
+ title('fs = 800 Hz, rectangular window, FFT length = 1600, f = 0.5 Hz');
  xlabel('f/Hz');
  ylabel('20*log10(|A|*2/N /dB)');
  
@@ -58,7 +62,7 @@
  plot(f(1:N/2+1),20*log10(abs(sig1_hann_fft(1:N/2+1))));
  plot(f(1:N/2+1),20*log10(abs(sig2_hann_fft(1:N/2+1))));
  legend('200 Hz','200.25 Hz');
- title('fs = 800 Hz, rectangular window, FFT length = 1600, ∆f = 0.5 Hz');
+ title('fs = 800 Hz, rectangular window, FFT length = 1600, f = 0.5 Hz');
   xlabel('f/Hz');
  ylabel('20*log10(|A|*2/N /dB)');
  
@@ -67,7 +71,7 @@
  plot(f(1:N/2+1),20*log10(abs(sig1_flat_fft(1:N/2+1))));
  plot(f(1:N/2+1),20*log10(abs(sig2_flat_fft(1:N/2+1))));
  legend('200 Hz','200.25 Hz');
- title('fs = 800 Hz, flattop window, FFT length = 1600, ∆f = 0.5 Hz');
+ title('fs = 800 Hz, flattop window, FFT length = 1600, f = 0.5 Hz');
  xlabel('f/Hz');
  ylabel('20*log10(|A|*2/N /dB)');
  
@@ -90,11 +94,11 @@
  figure();
   subplot(2,1,1);
    plot(fpad,sig1_rect_spec);
-   title(['f = 200 Hz, fs = 800 Hz, rectangular window, FFT length = ' ,num2str(Np),' ∆f = ', num2str(fs/Np) ,' Hz']);
+   title(['f = 200 Hz, fs = 800 Hz, rectangular window, FFT length = ' ,num2str(Np),' f = ', num2str(fs/Np) ,' Hz']);
    xlabel('f/Hz');
   subplot(2,1,2);
    plot(fpad,sig2_rect_spec);
-   title(['f = 200.25 Hz, fs = 800 Hz, rectangular window, FFT length = ' ,num2str(Np),' ∆f = ', num2str(fs/Np) ,' Hz']);
+   title(['f = 200.25 Hz, fs = 800 Hz, rectangular window, FFT length = ' ,num2str(Np),' f = ', num2str(fs/Np) ,' Hz']);
    xlabel('f/Hz');
    
  %hanning
@@ -108,11 +112,11 @@
   figure();
   subplot(2,1,1);
    plot(fpad, sig1_hann_spec);
-   title(['f = 200 Hz, fs = 800 Hz, hanning window, FFT length = ' ,num2str(Np),' ∆f = ', num2str(fs/Np) ,' Hz']);
+   title(['f = 200 Hz, fs = 800 Hz, hanning window, FFT length = ' ,num2str(Np),' f = ', num2str(fs/Np) ,' Hz']);
    xlabel('f/Hz');
   subplot(2,1,2);
    plot(fpad, sig2_hann_spec);
-   title(['f = 200.25 Hz, fs = 800 Hz, hanning window, FFT length = ' ,num2str(Np),' ∆f = ', num2str(fs/Np) ,' Hz']);
+   title(['f = 200.25 Hz, fs = 800 Hz, hanning window, FFT length = ' ,num2str(Np),' f = ', num2str(fs/Np) ,' Hz']);
    xlabel('f/Hz');
    
  
@@ -127,48 +131,49 @@
   figure();
   subplot(2,1,1);
    plot(fpad,sig1_flat_spec);
-   title(['f = 200 Hz, fs = 800 Hz, flattop window, FFT length = ' ,num2str(Np),' ∆f = ', num2str(fs/Np) ,' Hz']);
+   title(['f = 200 Hz, fs = 800 Hz, flattop window, FFT length = ' ,num2str(Np),' f = ', num2str(fs/Np) ,' Hz']);
    xlabel('f/Hz');
   subplot(2,1,2);
    plot(fpad,sig2_flat_spec);
-   title(['f = 200.25 Hz, fs = 800 Hz, flattop window, FFT length = ' ,num2str(Np),' ∆f = ', num2str(fs/Np) ,' Hz']);
+   title(['f = 200.25 Hz, fs = 800 Hz, flattop window, FFT length = ' ,num2str(Np),' f = ', num2str(fs/Np) ,' Hz']);
    xlabel('f/Hz');
    
- % aufg g
+ %%
+ %aufg g
  
  
  %bandwiwdth
   %rect
   spec = sig1_rect_spec;
   
-  [maxspec, middle] = max(spec);
-  [err,left] = min(abs(spec(1:middle)+3));
-  [err,right] = min(abs(spec(middle:Np/2)+3));
+  [~, middle] = max(spec);
+  [~,left] = min(abs(spec(1:middle)+3));
+  [~,right] = min(abs(spec(middle:Np/2)+3));
   right = right + middle;
   bandw_sig1_rect = fpad(right) - fpad(left)
   
   spec = sig2_rect_spec;
   
-  [maxspec, middle] = max(spec);
-  [err,left] = min(abs(spec(1:middle)+3));
-  [err,right] = min(abs(spec(middle:Np/2)+3));
+  [~, middle] = max(spec);
+  [~,left] = min(abs(spec(1:middle)+3));
+  [~,right] = min(abs(spec(middle:Np/2)+3));
   right = right + middle;
   bandw_sig2_rect = fpad(right) - fpad(left)
   
   %hann  
   spec = sig1_hann_spec;
   
-  [maxspec, middle] = max(spec);
-  [err,left] = min(abs(spec(1:middle)+3));
-  [err,right] = min(abs(spec(middle:Np/2)+3));
+  [~, middle] = max(spec);
+  [~,left] = min(abs(spec(1:middle)+3));
+  [~,right] = min(abs(spec(middle:Np/2)+3));
   right = right + middle;
   bandw_sig1_hann = fpad(right) - fpad(left)
   
   spec = sig2_hann_spec;
   
-  [maxspec, middle] = max(spec);
-  [err,left] = min(abs(spec(1:middle)+3));
-  [err,right] = min(abs(spec(middle:Np/2)+3));
+  [~, middle] = max(spec);
+  [~,left] = min(abs(spec(1:middle)+3));
+  [~,right] = min(abs(spec(middle:Np/2)+3));
   right = right + middle;
   bandw_sig2_hann = fpad(right) - fpad(left)
 
@@ -176,16 +181,16 @@
   
   spec = sig1_flat_spec;
   
-  [maxspec, middle] = max(spec);
-  [err,left] = min(abs(spec(1:middle)+3));
-  [err,right] = min(abs(spec(middle:Np/2)+3));
+  [~, middle] = max(spec);
+  [~,left] = min(abs(spec(1:middle)+3));
+  [~,right] = min(abs(spec(middle:Np/2)+3));
   right = right + middle;
   bandw_sig1_flat = fpad(right) - fpad(left)
   
   spec = sig2_flat_spec;
   
-  [maxspec, middle] = max(spec);
-  [err,left] = min(abs(spec(1:middle)+3));
-  [err,right] = min(abs(spec(middle:Np/2)+3));
+  [~, middle] = max(spec);
+  [~,left] = min(abs(spec(1:middle)+3));
+  [~,right] = min(abs(spec(middle:Np/2)+3));
   right = right + middle;
   bandw_sig2_flat = fpad(right) - fpad(left)
