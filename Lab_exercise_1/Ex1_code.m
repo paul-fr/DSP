@@ -53,7 +53,7 @@
  plot(f(1:N/2+1),20*log10(abs(sig1_rect_fft(1:N/2+1))));
  plot(f(1:N/2+1),20*log10(abs(sig2_rect_fft(1:N/2+1))));
  legend('200 Hz','200.25 Hz');
- title('fs = 800 Hz, rectangular window, FFT length = 1600, f = 0.5 Hz');
+ title('fs = 800 Hz, rectangular window, FFT length = 1600, \Deltaf = 0.5 Hz');
  xlabel('f/Hz');
  ylabel('20*log10(|A|*2/N /dB)');
  
@@ -62,7 +62,7 @@
  plot(f(1:N/2+1),20*log10(abs(sig1_hann_fft(1:N/2+1))));
  plot(f(1:N/2+1),20*log10(abs(sig2_hann_fft(1:N/2+1))));
  legend('200 Hz','200.25 Hz');
- title('fs = 800 Hz, rectangular window, FFT length = 1600, f = 0.5 Hz');
+ title('fs = 800 Hz, rectangular window, FFT length = 1600, \Deltaf = 0.5 Hz');
   xlabel('f/Hz');
  ylabel('20*log10(|A|*2/N /dB)');
  
@@ -71,7 +71,7 @@
  plot(f(1:N/2+1),20*log10(abs(sig1_flat_fft(1:N/2+1))));
  plot(f(1:N/2+1),20*log10(abs(sig2_flat_fft(1:N/2+1))));
  legend('200 Hz','200.25 Hz');
- title('fs = 800 Hz, flattop window, FFT length = 1600, f = 0.5 Hz');
+ title('fs = 800 Hz, flattop window, FFT length = 1600, \Deltaf = 0.5 Hz');
  xlabel('f/Hz');
  ylabel('20*log10(|A|*2/N /dB)');
  
@@ -94,11 +94,11 @@
  figure();
   subplot(2,1,1);
    plot(fpad,sig1_rect_spec);
-   title(['f = 200 Hz, fs = 800 Hz, rectangular window, FFT length = ' ,num2str(Np),' f = ', num2str(fs/Np) ,' Hz']);
+   title(['f = 200 Hz, fs = 800 Hz, rectangular window, FFT length = ' ,num2str(Np),', \Deltaf = ', num2str(fs/Np) ,' Hz']);
    xlabel('f/Hz');
   subplot(2,1,2);
    plot(fpad,sig2_rect_spec);
-   title(['f = 200.25 Hz, fs = 800 Hz, rectangular window, FFT length = ' ,num2str(Np),' f = ', num2str(fs/Np) ,' Hz']);
+   title(['f = 200.25 Hz, fs = 800 Hz, rectangular window, FFT length = ' ,num2str(Np),', \Deltaf = ', num2str(fs/Np) ,' Hz']);
    xlabel('f/Hz');
    
  %hanning
@@ -112,11 +112,11 @@
   figure();
   subplot(2,1,1);
    plot(fpad, sig1_hann_spec);
-   title(['f = 200 Hz, fs = 800 Hz, hanning window, FFT length = ' ,num2str(Np),' f = ', num2str(fs/Np) ,' Hz']);
+   title(['f = 200 Hz, fs = 800 Hz, hanning window, FFT length = ' ,num2str(Np),', \Deltaf = ', num2str(fs/Np) ,' Hz']);
    xlabel('f/Hz');
   subplot(2,1,2);
    plot(fpad, sig2_hann_spec);
-   title(['f = 200.25 Hz, fs = 800 Hz, hanning window, FFT length = ' ,num2str(Np),' f = ', num2str(fs/Np) ,' Hz']);
+   title(['f = 200.25 Hz, fs = 800 Hz, hanning window, FFT length = ' ,num2str(Np),', \Deltaf = ', num2str(fs/Np) ,' Hz']);
    xlabel('f/Hz');
    
  
@@ -131,11 +131,11 @@
   figure();
   subplot(2,1,1);
    plot(fpad,sig1_flat_spec);
-   title(['f = 200 Hz, fs = 800 Hz, flattop window, FFT length = ' ,num2str(Np),' f = ', num2str(fs/Np) ,' Hz']);
+   title(['f = 200 Hz, fs = 800 Hz, flattop window, FFT length = ' ,num2str(Np),', \Deltaf = ', num2str(fs/Np) ,' Hz']);
    xlabel('f/Hz');
   subplot(2,1,2);
    plot(fpad,sig2_flat_spec);
-   title(['f = 200.25 Hz, fs = 800 Hz, flattop window, FFT length = ' ,num2str(Np),' f = ', num2str(fs/Np) ,' Hz']);
+   title(['f = 200.25 Hz, fs = 800 Hz, flattop window, FFT length = ' ,num2str(Np),', \Deltaf = ', num2str(fs/Np) ,' Hz']);
    xlabel('f/Hz');
    
  %%
