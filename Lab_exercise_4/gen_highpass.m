@@ -5,12 +5,18 @@ function [h,hw] = gen_highpass(fc,N)
 
 %initialize values
 fs = 48000;
-Wc = 2*pi*fc/fs
+Wc = 2*pi*fc/fs;
 k = 0:N;
 
 %generate impulse response of FIR filter
-h= - sin(Wc*(k - N/2)) ./ (pi *(k - N/2 ));
+
+
+h= - sin(Wc.*(k - N/2)) ./ (pi *(k - N/2 ));
 h(N/2 + 1) = 1 - Wc/pi;
+
+
+
+
 
 %generate Kaiser-bessel window
 A=36;
